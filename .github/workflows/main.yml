@@ -31,6 +31,6 @@ jobs:
 
       - name: Run uptime check
         env:
-          TARGET_URL: "https://www.uwrf.edu/"
+          TARGET_URL: "https://www.uwrf.edu:9999/"
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: python uptime_monitor.py
