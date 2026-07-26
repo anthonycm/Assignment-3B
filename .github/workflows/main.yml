@@ -2,12 +2,15 @@ name: Uptime Check
 
 on:
   schedule:
-    - cron: "*/30 * * * *"  # every 30 minutes; adjust as needed
+    - cron: "*/30 * * * *"
   workflow_dispatch: {}
 
 jobs:
   check:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: uptime-monitor
     steps:
       - uses: actions/checkout@v4
 
@@ -18,12 +21,10 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      # state.json is gitignored (it's local/run state, not source), so it's
-      # persisted across scheduled runs with the Actions cache instead.
       - name: Restore state
         uses: actions/cache@v4
         with:
-          path: state.json
+          path: uptime-monitor/state.json
           key: uptime-state-${{ github.run_id }}
           restore-keys: |
             uptime-state-
