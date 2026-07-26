@@ -34,3 +34,4 @@ jobs:
           TARGET_URL: "https://www.uwrf.edu/"
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: python uptime_monitor.py
+# Schedule Check
